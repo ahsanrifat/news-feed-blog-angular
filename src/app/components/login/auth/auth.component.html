@@ -1,48 +1,116 @@
-<div *ngIf="this.isLoginFormActive" class="loginForm">
+<!-- Login Form -->
+<form
+  *ngIf="this.isLoginFormActive"
+  class="loginForm"
+  [formGroup]="loginForm"
+  (ngSubmit)="loginForm.valid && submitLogin()"
+>
   <h2 class="loginHeader">Welcome Back! Please Enter Your Credientials</h2>
-  <div class="example-container">
+  <div class="example-container formBody">
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" required />
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        formControlName="email"
+        required
+      />
     </mat-form-field>
   </div>
   <div class="example-container">
     <mat-form-field appearance="fill">
       <mat-label>Enter Password</mat-label>
-      <input matInput required />
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <input
+        matInput
+        placeholder="Password"
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary">Login</button>
+  <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+    Login
+  </button>
   <div class="signUpPrompt">
     New Here?
-    <button mat-button color="primary" (click)="isLoginFormActive = false">
+    <button
+      mat-button
+      color="primary"
+      (click)="isLoginFormActive = false; hide = true"
+    >
       Signup
     </button>
   </div>
-</div>
-<div *ngIf="!this.isLoginFormActive" class="loginForm">
+</form>
+<!-- Register User Form -->
+<form
+  *ngIf="!this.isLoginFormActive"
+  class="loginForm"
+  [formGroup]="registrationForm"
+  (ngSubmit)="registrationForm.valid && submitRegistration()"
+>
   <h2 class="loginHeader">Welcome ! Lets Get Started</h2>
-  <div class="example-container">
+  <div class="example-container formBody">
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" required />
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        formControlName="email"
+        required
+      />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your full name</mat-label>
+      <input
+        matInput
+        placeholder="Alex Roy"
+        formControlName="fullName"
+        required
+      />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
     </mat-form-field>
   </div>
   <div class="example-container">
     <mat-form-field appearance="fill">
       <mat-label>Enter Password</mat-label>
-      <input matInput required />
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <input
+        matInput
+        required
+        formControlName="password"
+        [type]="hide ? 'password' : 'text'"
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary">Register</button>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter Password Again</mat-label>
+      <input matInput required formControlName="confirmPassword" />
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!registrationForm.valid"
+  >
+    Register
+  </button>
   <div class="signUpPrompt">
     Already have an account?
     <button mat-button color="primary" (click)="isLoginFormActive = true">
       Login
     </button>
   </div>
-</div>
+</form>
