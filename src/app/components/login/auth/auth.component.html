@@ -1,1 +1,48 @@
-<p>auth works!</p>
+<div *ngIf="this.isLoginFormActive" class="loginForm">
+  <h2 class="loginHeader">Welcome Back! Please Enter Your Credientials</h2>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" required />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter Password</mat-label>
+      <input matInput required />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary">Login</button>
+  <div class="signUpPrompt">
+    New Here?
+    <button mat-button color="primary" (click)="isLoginFormActive = false">
+      Signup
+    </button>
+  </div>
+</div>
+<div *ngIf="!this.isLoginFormActive" class="loginForm">
+  <h2 class="loginHeader">Welcome ! Lets Get Started</h2>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" required />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter Password</mat-label>
+      <input matInput required />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary">Register</button>
+  <div class="signUpPrompt">
+    Already have an account?
+    <button mat-button color="primary" (click)="isLoginFormActive = true">
+      Login
+    </button>
+  </div>
+</div>

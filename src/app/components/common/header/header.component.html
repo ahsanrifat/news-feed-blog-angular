@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <span style="margin-right: 20px">Blog Book</span>
+  <button *ngIf="this.sharedData.isLoggedIn" mat-button>News Feed</button>
+  <button *ngIf="this.sharedData.isLoggedIn" mat-button>Blog Feed</button>
+  <button *ngIf="this.sharedData.isLoggedIn" mat-button>Write Post</button>
+  <button *ngIf="this.sharedData.isLoggedIn" mat-button>Setting</button>
+  <button *ngIf="this.sharedData.isLoggedIn" mat-button style="float: left">
+    Logout
+  </button>
+</mat-toolbar>

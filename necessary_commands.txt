@@ -1,0 +1,1 @@
+1. ng g m newsfeed --routing //for adding module with routes
