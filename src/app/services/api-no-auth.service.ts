@@ -10,4 +10,10 @@ export class ApiNoAuthService {
   authenticateUser(userData: any) {
     return this._http.post<any>(`${this.baseUrl}/auth/api/token/`, userData);
   }
+  registerUser(userData: any) {
+    return this._http.post<any>(
+      `${this.baseUrl}/auth/api/user/create/`,
+      userData
+    );
+  }
 }

@@ -1,0 +1,12 @@
+<div class="container editor">
+  <h2 style="text-align: center">Create Blog Post</h2>
+  <ckeditor
+    [editor]="Editor"
+    [data]="model.editorData"
+    (ready)="onReady($event)"
+    #myEditor
+  ></ckeditor>
+  <button mat-button-raised color="primary" (click)="submitBlog()">
+    Submit
+  </button>
+</div>

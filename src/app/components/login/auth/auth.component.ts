@@ -19,8 +19,14 @@ export class AuthComponent implements OnInit {
   registrationForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     fullName: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+    confirmPassword: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
   constructor(
@@ -29,6 +35,8 @@ export class AuthComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  passwordMatchValidator(frm: FormGroup) {}
 
   submitLogin() {
     console.log(this.loginForm.value);
@@ -43,10 +51,20 @@ export class AuthComponent implements OnInit {
           'userAuthData',
           this.sharedData.userAuthData
         );
+        this.sharedData.isLoggedIn = true;
       }
     });
   }
   submitRegistration() {
+    let registration_data = this.registrationForm.value;
     console.log(this.registrationForm.value);
+    if (registration_data['password'] == registration_data['confirmPassword']) {
+      registration_data['is_active'] = true;
+      this.apiNoAuth.registerUser(registration_data).subscribe((data) => {
+        window.alert(data?.message);
+      });
+    } else {
+      window.alert('Password Did Not Matched!!');
+    }
   }
 }
