@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardGuard } from './router-guards/auth-guard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -12,6 +13,14 @@ const routes: Routes = [
     path: 'blog',
     loadChildren: () =>
       import('./components/blog/blog.module').then((mod) => mod.BlogModule),
+    canActivate: [AuthGuardGuard],
+  },
+  {
+    path: 'weather',
+    loadChildren: () =>
+      import('./components/weather/weather.module').then(
+        (mod) => mod.WeatherModule
+      ),
   },
 ];
 

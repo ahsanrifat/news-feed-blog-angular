@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ApiNoAuthService } from 'src/app/services/api-no-auth.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -31,7 +32,8 @@ export class AuthComponent implements OnInit {
 
   constructor(
     private apiNoAuth: ApiNoAuthService,
-    private sharedData: SharedDataService
+    private sharedData: SharedDataService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -52,6 +54,7 @@ export class AuthComponent implements OnInit {
           this.sharedData.userAuthData
         );
         this.sharedData.isLoggedIn = true;
+        this.router.navigate(['/weather']);
       }
     });
   }
@@ -62,6 +65,9 @@ export class AuthComponent implements OnInit {
       registration_data['is_active'] = true;
       this.apiNoAuth.registerUser(registration_data).subscribe((data) => {
         window.alert(data?.message);
+        if (data?.success == true) {
+          this.isLoginFormActive = true;
+        }
       });
     } else {
       window.alert('Password Did Not Matched!!');

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -7,7 +8,11 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public sharedData: SharedDataService) {}
+  constructor(public sharedData: SharedDataService, public router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.sharedData.isUserLoggedIn()) {
+      this.router.navigate(['/weather']);
+    }
+  }
 }
