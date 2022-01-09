@@ -1,0 +1,35 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin-left: 30%;
+  margin-top: 40px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #0000000a;
+  color: rgb(0, 0, 0);
+}
+.labelMat {
+  color: black;
+}
+.weather-view-body {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 15px;
+}
+table {
+  // width: 80%;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 15px;
+}

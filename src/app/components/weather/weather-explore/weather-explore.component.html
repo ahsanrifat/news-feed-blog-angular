@@ -1,1 +1,41 @@
-<p>weather-explore works!</p>
+<form class="example-form" #city>
+  <h2 class="weather-header">Discover Weather</h2>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label class="labelMat">Search City</mat-label>
+    <input [(ngModel)]="cityName" [value]="cityName" name="city" matInput />
+
+    <!--  placeholder="Ex. Pizza" value="Sushi" -->
+  </mat-form-field>
+  <button mat-button-raised color="primary" (click)="getWeatherDataOfACity()">
+    Search
+  </button>
+</form>
+
+<div class="weather-view-body" *ngIf="dailyWeatherData">
+  <table>
+    <tr>
+      <th>Temperature</th>
+      <td>{{ dailyWeatherData?.main?.temp }}</td>
+    </tr>
+    <tr>
+      <th>Feels Like</th>
+      <td>{{ dailyWeatherData?.main?.feels_like }}</td>
+    </tr>
+    <tr>
+      <th>Max Temp</th>
+      <td>{{ dailyWeatherData?.main?.temp_max }}</td>
+    </tr>
+    <tr>
+      <th>Min Temp</th>
+      <td>{{ dailyWeatherData?.main?.temp_min }}</td>
+    </tr>
+    <tr>
+      <th>Pressure</th>
+      <td>{{ dailyWeatherData?.main?.pressure }}</td>
+    </tr>
+    <tr>
+      <th>Humidity</th>
+      <td>{{ dailyWeatherData?.main?.humidity }}</td>
+    </tr>
+  </table>
+</div>
